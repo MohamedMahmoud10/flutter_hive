@@ -7,10 +7,12 @@ class CustomTextFormField extends StatelessWidget {
     Key? key,
     required this.textEditingController,
     required this.textFieldName,
-     this.maxLines=1,
+    this.maxLines = 1,
+    required this.hintText,
   }) : super(key: key);
   final TextEditingController textEditingController;
   final String textFieldName;
+  final String hintText;
   final int? maxLines;
 
   @override
@@ -20,14 +22,23 @@ class CustomTextFormField extends StatelessWidget {
       controller: textEditingController,
       name: textFieldName,
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(
-                10.r,
-              ),
-              borderSide: BorderSide(
-                width: 2.w,
-                color: Colors.blue,
-              ))),
+        hintText: hintText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(
+            10.r,
+          ),
+          borderSide: BorderSide(
+            width: 2.w,
+            color: Colors.blue,
+          ),
+        ),
+      ),
+      validator: (String? value) {
+        if (value?.isEmpty ?? true) {
+          return 'Field Is Required ';
+        }
+        return null;
+      },
     );
   }
 }

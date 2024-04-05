@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
+  const CustomAppBar({Key? key, required this.title, required this.icon})
+      : super(key: key);
+  final String title;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
-    return           Row(
+    return Row(
       children: [
         Text(
-          'Note App',
+         title,
           style: TextStyle(fontSize: 16.sp, color: Colors.white),
         ),
         const Spacer(),
@@ -20,8 +23,8 @@ class CustomAppBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(16.r),
             color: Colors.black.withOpacity(0.4),
           ),
-          child: const Icon(
-            Icons.search,
+          child:  Icon(
+            icon,
             color: Colors.white,
             size: 30,
           ),
